@@ -1,0 +1,55 @@
+{
+    "name": "gazzoy/laravel-logging-more",
+    "description": "Laravel Logging More supports logging for actions and queries",
+    "keywords": [
+        "logging",
+        "laravel"
+    ],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/gazzoy/laravel-logging-more/issues",
+        "source": "https://github.com/gazzoy/laravel-logging-more"
+    },
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.0|^10.0",
+        "monolog/monolog": "^3.5"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "orchestra/testbench": "^8.19",
+        "pestphp/pest": "^2.30",
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gazzoy\\LaravelLoggingMore\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gazzoy\\LaravelLoggingMore\\Providers\\LoggingMoreServiceProvider.php"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": [
+            "@php vendor/bin/pest"
+        ]
+    }
+}
