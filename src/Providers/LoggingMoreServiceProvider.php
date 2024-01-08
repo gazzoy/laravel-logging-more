@@ -3,6 +3,7 @@
 namespace Gazzoy\LaravelLoggingMore\Providers;
 
 use Gazzoy\LaravelLoggingMore\Processors\LoggingMoreUidProcessor;
+use Illuminate\Support\ServiceProvider;
 
 class LoggingMoreServiceProvider extends ServiceProvider
 {
