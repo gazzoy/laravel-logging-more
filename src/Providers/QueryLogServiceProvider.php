@@ -128,6 +128,12 @@ class QueryLogServiceProvider extends ServiceProvider
             return true;
         }
 
+        // note: ignore telescope
+        if (str($sql)->startsWith('insert into `telescope_') || str($sql)->contains('from `telescope_'))
+        {
+            return true;
+        }
+
         return false;
     }
 
