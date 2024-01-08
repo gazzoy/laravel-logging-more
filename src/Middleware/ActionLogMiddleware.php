@@ -59,6 +59,17 @@ class ActionLogMiddleware
         }
 
         $requestAll = $request->all();
+
+        // note: ignore pulse
+        if (
+            $request->path() === 'livewire/update'
+            && Arr::has($requestAll, 'components.0.snapshot')
+            && str(Arr::get($requestAll, 'components.0.snapshot'))->contains('"pulse.')
+        )
+        {
+            return true;
+        }
+
         if (
             Arr::has($requestAll, 'updates.0.type.syncInput')
             && Arr::get($requestAll, 'updates.0.type.syncInput') === 'syncInput'
