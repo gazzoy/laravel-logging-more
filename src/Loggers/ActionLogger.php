@@ -4,28 +4,18 @@ namespace Gazzoy\LaravelLoggingMore\Loggers;
 
 use Gazzoy\LaravelLoggingMore\Formatters\ActionLogFormatter;
 use Gazzoy\LaravelLoggingMore\Processors\LoggingMoreUidProcessor;
-use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Monolog\Formatter\NormalizerFormatter;
 use Monolog\Level;
 use Monolog\LogRecord;
 use Monolog\Processor\IntrospectionProcessor;
 
 class ActionLogger extends AbstractLogger
 {
-    public function __invoke(Logger $logger): void
+    protected function getFormatter(): NormalizerFormatter
     {
-        $formatter = new ActionLogFormatter();
-        $processors = $this->getProcessors();
-
-        foreach ($logger->getHandlers() as $handler)
-        {
-            $handler->setFormatter($formatter); // @phpstan-ignore-line
-            foreach ($processors as $eachProcessor)
-            {
-                $handler->pushProcessor($eachProcessor); // @phpstan-ignore-line
-            }
-        }
+        return new ActionLogFormatter();
     }
 
     protected function getProcessors(): array

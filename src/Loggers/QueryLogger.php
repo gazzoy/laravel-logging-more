@@ -4,9 +4,9 @@ namespace Gazzoy\LaravelLoggingMore\Loggers;
 
 use Gazzoy\LaravelLoggingMore\Formatters\GeneralLogFormatter;
 use Gazzoy\LaravelLoggingMore\Processors\LoggingMoreUidProcessor;
-use Illuminate\Log\Logger;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Monolog\Formatter\NormalizerFormatter;
 use Monolog\Level;
 use Monolog\LogRecord;
 use Monolog\Processor\IntrospectionProcessor;
@@ -15,19 +15,9 @@ class QueryLogger extends AbstractLogger
 {
     private static bool $disableUserId = false;
 
-    public function __invoke(Logger $logger): void
+    protected function getFormatter(): NormalizerFormatter
     {
-        $formatter = new GeneralLogFormatter();
-        $processors = $this->getProcessors();
-
-        foreach ($logger->getHandlers() as $handler)
-        {
-            $handler->setFormatter($formatter); // @phpstan-ignore-line
-            foreach ($processors as $eachProcessor)
-            {
-                $handler->pushProcessor($eachProcessor); // @phpstan-ignore-line
-            }
-        }
+        return new GeneralLogFormatter();
     }
 
     protected function getProcessors(): array
