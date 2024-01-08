@@ -41,7 +41,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Gazzoy\\LaravelLoggingMore\\Providers\\LoggingMoreServiceProvider.php"
+                "Gazzoy\\LaravelLoggingMore\\Providers\\LoggingMoreServiceProvider.php",
+                "Gazzoy\\LaravelLoggingMore\\Providers\\QueryLogServiceProvider.php"
             ]
         }
     },

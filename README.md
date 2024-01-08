@@ -21,6 +21,38 @@ Before you use this package, you have to publish the config to your application:
 
 `php artisan vendor:publish --tag "logging-more-config"`
 
+config/logging.php
+```php
+    ...
+        'general' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/general.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
+            'tap' => [Gazzoy\LaravelLoggingMore\Loggers\GeneralLogger::class],
+        ],
+
+        'action' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/action.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
+            'tap' => [Gazzoy\LaravelLoggingMore\Loggers\ActionLogger::class],
+        ],
+
+        'query' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/query.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
+            'tap' => [Gazzoy\LaravelLoggingMore\Loggers\QueryLogger::class],
+        ],
+    ...
+```
+
 ## Test
 
 ```shell
