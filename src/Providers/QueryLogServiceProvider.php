@@ -131,7 +131,7 @@ class QueryLogServiceProvider extends ServiceProvider
         return false;
     }
 
-    private function detectColumnNameFromSQL($sql)
+    public function detectColumnNameFromSQL($sql)
     {
         // note: detect first ? then replace chars with `
         $theColumnName = null;
