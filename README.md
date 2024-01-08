@@ -21,8 +21,29 @@ Before you use this package, you have to publish the config to your application:
 
 `php artisan vendor:publish --tag "logging-more-config"`
 
+app/Http/Kernel.php
+```php
+...
+protected $middlewareGroups = [
+        'web' => [
+            ...
+            \Gazzoy\LaravelLoggingMore\Middleware\ActionLogMiddleware::class,
+        ],
+        ...
+];
+...
+```
+
 config/logging.php
 ```php
+    ...
+        'single' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/laravel.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'replace_placeholders' => true,
+            'tap' => [Gazzoy\LaravelLoggingMore\Loggers\LineLogger::class],
+        ],
     ...
         'general' => [
             'driver' => 'daily',
