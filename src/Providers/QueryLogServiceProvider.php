@@ -3,6 +3,7 @@
 namespace Gazzoy\LaravelLoggingMore\Providers;
 
 use Carbon\Carbon as CarbonCarbon;
+use Exception;
 use Illuminate\Database\Events\TransactionBeginning;
 use Illuminate\Database\Events\TransactionCommitted;
 use Illuminate\Database\Events\TransactionRolledBack;
@@ -105,7 +106,15 @@ class QueryLogServiceProvider extends ServiceProvider
     {
         if (app()->isProduction() || config('app.env') === 'development')
         {
-            Log::channel('query')->debug($msg);
+            try
+            {
+                Log::channel('query')->debug($msg);
+            }
+            catch (Exception $e)
+            {
+                // catch and ignore
+                echo 'Got exception:' . $e->getMessage();
+            }
         }
     }
 
