@@ -113,7 +113,7 @@ class QueryLogServiceProvider extends ServiceProvider
             catch (Exception $e)
             {
                 // catch and ignore
-                echo 'Got exception:' . $e->getMessage();
+                // echo 'Got exception:' . $e->getMessage();
             }
         }
     }
